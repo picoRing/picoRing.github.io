@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>picoRing — A History of Battery-Free Smart Rings</title>
-<meta name="description" content="The story of battery-free and ultra-low-power smart ring research: from TelemetRing (2020) to picoRing (2024), picoRing mouse (2025) and picoRing NFC (2026).">
-<meta name="keywords" content="picoRing, TelemetRing, picoRing mouse, picoRing NFC, smart ring, battery-free ring, batteryless, wearable, wireless ring, inductive telemetry, passive inductive telemetry, semi-passive inductive telemetry, body-scale NFC, ring mouse, finger input, thumb-to-index input, ultra-low-power, AR, VR, HCI, human-computer interaction, UIST, CHI, University of Tokyo, Kawahara Lab, Ryo Takahashi, coil sensing, impedance sensing, e-textile">
-<meta name="author" content="Ryo Takahashi, University of Tokyo (Kawahara Lab)">
+<meta name="description" content="The story of battery-free and ultra-low-power smart ring research: from TelemetRing (2020) to picoRing (2024), picoRing mouse (2025), picoRing NFC (2026) and picoRing dual (2026).">
+<meta name="keywords" content="picoRing, TelemetRing, picoRing keyboard, picoRing mouse, picoRing NFC, picoRing dual, smart ring, battery-free ring, batteryless, wearable, wireless ring, inductive telemetry, passive inductive telemetry, semi-passive inductive telemetry, body-scale NFC, ring mouse, bimanual input, finger input, thumb-to-index input, microgesture, ultra-low-power, AR, VR, XR, HCI, human-computer interaction, UIST, CHI, ISWC, University of Tokyo, Kawahara Lab, Ryo Takahashi, coil sensing, impedance sensing, e-textile">
+<meta name="author" content="Ryo Takahashi">
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="picoRing — A History of Battery-Free Smart Rings">
-<meta property="og:description" content="From TelemetRing (2020) to picoRing, picoRing mouse and picoRing NFC: five years of wireless, ultra-low-power smart ring research.">
+<meta property="og:description" content="From TelemetRing (2020) to picoRing, picoRing mouse, picoRing NFC and picoRing dual: years of wireless, ultra-low-power smart ring research.">
 <meta property="og:url" content="https://picoring.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="picoRing — A History of Battery-Free Smart Rings">
-<meta name="twitter:description" content="From TelemetRing (2020) to picoRing, picoRing mouse and picoRing NFC: five years of wireless, ultra-low-power smart ring research.">
+<meta name="twitter:description" content="From TelemetRing (2020) to picoRing, picoRing mouse, picoRing NFC and picoRing dual: years of wireless, ultra-low-power smart ring research.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -31,6 +31,7 @@
     --accent-2: #5ce0c6;
     --accent-3: #ff8fb1;
     --accent-4: #ffc46b;
+    --accent-5: #b78bff;
     --radius: 18px;
     --maxw: 1080px;
   }
@@ -45,6 +46,7 @@
     overflow-x: hidden;
   }
   h1, h2, h3 { font-family: 'Space Grotesk', 'Inter', sans-serif; line-height: 1.2; letter-spacing: -0.02em; }
+  em { font-style: italic; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
@@ -59,18 +61,6 @@
       radial-gradient(60% 70% at 50% -10%, rgba(124,140,255,0.28), transparent 60%),
       radial-gradient(40% 50% at 85% 20%, rgba(92,224,198,0.18), transparent 60%),
       radial-gradient(40% 50% at 12% 30%, rgba(255,143,177,0.14), transparent 60%);
-  }
-  .hero .eyebrow {
-    display: inline-block;
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent-2);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 7px 16px;
-    margin-bottom: 28px;
-    background: rgba(255,255,255,0.02);
   }
   .hero h1 {
     font-size: clamp(2.6rem, 7vw, 5rem);
@@ -114,28 +104,37 @@
   .section-head p { color: var(--muted); font-size: 1.05rem; }
   .kicker { color: var(--accent-2); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.78rem; }
 
-  /* ---------- Timeline ---------- */
-  .timeline { position: relative; max-width: 760px; margin: 0 auto; padding-left: 8px; }
+  /* ---------- Timeline (horizontal) ---------- */
+  .timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
   .timeline::before {
-    content: ""; position: absolute; left: 16px; top: 8px; bottom: 8px; width: 2px;
-    background: linear-gradient(var(--accent), var(--accent-2), var(--accent-3), var(--accent-4));
+    content: ""; position: absolute; left: 9%; right: 9%; top: 8px; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent-4), var(--accent-5));
     opacity: 0.5;
   }
-  .tl-item { position: relative; padding: 0 0 38px 54px; }
-  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item { position: relative; text-align: center; padding-top: 32px; }
   .tl-dot {
-    position: absolute; left: 8px; top: 4px; width: 18px; height: 18px; border-radius: 50%;
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 18px; height: 18px; border-radius: 50%;
     background: var(--bg); border: 3px solid var(--accent); box-shadow: 0 0 0 5px rgba(124,140,255,0.12);
   }
   .tl-item:nth-child(2) .tl-dot { border-color: var(--accent-2); box-shadow: 0 0 0 5px rgba(92,224,198,0.12); }
   .tl-item:nth-child(3) .tl-dot { border-color: var(--accent-3); box-shadow: 0 0 0 5px rgba(255,143,177,0.12); }
   .tl-item:nth-child(4) .tl-dot { border-color: var(--accent-4); box-shadow: 0 0 0 5px rgba(255,196,107,0.12); }
-  .tl-year { font-family: 'Space Grotesk'; font-weight: 700; color: var(--accent); font-size: 0.95rem; }
+  .tl-item:nth-child(5) .tl-dot { border-color: var(--accent-5); box-shadow: 0 0 0 5px rgba(183,139,255,0.12); }
+  .tl-year { font-family: 'Space Grotesk'; font-weight: 700; color: var(--accent); font-size: 0.9rem; }
   .tl-item:nth-child(2) .tl-year { color: var(--accent-2); }
   .tl-item:nth-child(3) .tl-year { color: var(--accent-3); }
   .tl-item:nth-child(4) .tl-year { color: var(--accent-4); }
-  .tl-title { font-size: 1.25rem; font-weight: 700; margin: 2px 0 6px; }
-  .tl-desc { color: var(--muted); font-size: 0.98rem; }
+  .tl-item:nth-child(5) .tl-year { color: var(--accent-5); }
+  .tl-title { font-size: 1.05rem; font-weight: 700; margin: 4px 0 2px; }
+  .tl-venue { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.02em; }
 
   /* ---------- Project cards ---------- */
   .project {
@@ -152,21 +151,31 @@
     background: linear-gradient(135deg, #eef0f7, #e3e7f3);
     border-bottom: 1px solid var(--line);
   }
+  .banner-soon {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    font-family: 'Space Grotesk'; font-weight: 700; font-size: 1.7rem; color: #cdd2e6;
+    background: linear-gradient(135deg, #1b1626, #241d33);
+  }
+  .banner-soon .soon-tag {
+    font-family: 'Inter'; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-5); border: 1px solid rgba(183,139,255,0.4); border-radius: 999px; padding: 4px 12px;
+  }
+  h3 .aka { font-family: 'Inter'; font-weight: 500; font-size: 0.92rem; color: var(--muted); letter-spacing: 0; }
   .project-grid { display: grid; grid-template-columns: 1.05fr 1fr; }
   .project-body { padding: 40px 38px; }
-  .project-media { background: #000; position: relative; min-height: 280px; }
+  .project-media { background: #000; position: relative; aspect-ratio: 16 / 9; align-self: center; }
   .project-media iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .media-placeholder {
     position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 14px; text-align: center; padding: 30px;
     background:
-      radial-gradient(70% 80% at 50% 30%, rgba(255,196,107,0.18), transparent 70%),
+      radial-gradient(70% 80% at 50% 30%, rgba(183,139,255,0.18), transparent 70%),
       linear-gradient(160deg, #14121a, #1b1622);
     color: var(--muted);
   }
   .media-placeholder .mp-ring { font-size: 2.6rem; }
   .media-placeholder .mp-text { font-size: 0.92rem; max-width: 280px; }
-  .media-placeholder .mp-link { font-weight: 600; color: var(--accent-4); }
+  .media-placeholder .mp-link { font-weight: 600; color: var(--accent-5); }
   .badge {
     display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
     padding: 5px 12px; border-radius: 999px; margin-bottom: 16px; text-transform: uppercase;
@@ -175,6 +184,7 @@
   .b2 { color: var(--accent-2); background: rgba(92,224,198,0.12); }
   .b3 { color: var(--accent-3); background: rgba(255,143,177,0.12); }
   .b4 { color: var(--accent-4); background: rgba(255,196,107,0.12); }
+  .b5 { color: var(--accent-5); background: rgba(183,139,255,0.12); }
   .project h3 { font-size: 1.85rem; margin-bottom: 6px; }
   .project .venue { color: var(--muted); font-size: 0.9rem; margin-bottom: 18px; font-weight: 500; }
   .project p.body-text { color: #cdd2e6; font-size: 1rem; margin-bottom: 20px; }
@@ -189,7 +199,7 @@
 
   /* ---------- Comparison table ---------- */
   .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
-  table.cmp { width: 100%; border-collapse: collapse; min-width: 820px; }
+  table.cmp { width: 100%; border-collapse: collapse; min-width: 940px; }
   table.cmp th, table.cmp td { padding: 15px 16px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
   table.cmp thead th { background: var(--bg-soft); font-family: 'Space Grotesk'; font-size: 0.92rem; }
   table.cmp thead th:first-child { color: var(--muted); }
@@ -197,6 +207,7 @@
   table.cmp thead th.h2c { color: var(--accent-2); }
   table.cmp thead th.h3c { color: var(--accent-3); }
   table.cmp thead th.h4c { color: var(--accent-4); }
+  table.cmp thead th.h5c { color: var(--accent-5); }
   table.cmp tbody th { font-weight: 600; color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
   table.cmp tbody td { color: var(--text); font-size: 0.92rem; }
   table.cmp tbody tr:hover { background: rgba(255,255,255,0.02); }
@@ -209,11 +220,17 @@
 
   @media (max-width: 820px) {
     .project-grid { grid-template-columns: 1fr; }
-    .project-media { min-height: 0; aspect-ratio: 16/9; order: -1; }
+    .project-media { aspect-ratio: 16/9; order: -1; }
     .project-body { padding: 30px 26px; }
     .project-banner { height: 190px; }
+    .timeline { grid-template-columns: repeat(2, 1fr); gap: 8px 16px; row-gap: 30px; }
+    .timeline::before { display: none; }
+    .tl-item { padding-top: 28px; }
     section { padding: 60px 0; }
     header.hero { padding: 90px 0 70px; }
+  }
+  @media (max-width: 480px) {
+    .timeline { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -221,9 +238,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">A History of Battery-Free Smart Rings</span>
     <h1><span class="grad">picoRing</span></h1>
-    <p class="lead">The story of wireless, ultra-low-power smart ring sensing — from a batteryless keyboard to a ring-shaped mouse that lasts over a month, and a finger-worn node in a body-scale NFC network.</p>
+    <p class="lead">The story of wireless, ultra-low-power smart ring sensing — from a batteryless keyboard to a ring-shaped mouse that lasts over a month, and a bimanual ring interface for everyday AR.</p>
     <div class="cta">
       <a class="btn btn-primary" href="#projects">Explore the projects ↓</a>
       <a class="btn btn-ghost" href="#compare">Compare specs</a>
@@ -233,35 +249,36 @@
 
 <section id="story">
   <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">The Journey</span>
-      <h2>Five years of shrinking the ring</h2>
-      <p>Each project builds on the same core idea: sensing a finger-worn ring wirelessly through magnetic coupling, so the ring itself stays tiny, light, and (almost) power-free.</p>
-    </div>
     <div class="timeline">
       <div class="tl-item">
         <span class="tl-dot"></span>
         <div class="tl-year">2020 · UIST</div>
         <div class="tl-title">TelemetRing</div>
-        <div class="tl-desc">A fully batteryless ring-shaped keyboard. <b>Passive inductive telemetry</b> reads finger typing without any power source on the ring — proving a smart ring can sense input with zero onboard energy.</div>
+        <div class="tl-venue">Batteryless ring keyboard</div>
       </div>
       <div class="tl-item">
         <span class="tl-dot"></span>
         <div class="tl-year">2024 · UIST</div>
         <div class="tl-title">picoRing</div>
-        <div class="tl-desc">A flexible architecture for <b>battery-free smart rings</b> paired with a sensitive wristband reader coil. Subtle thumb-to-index gestures — press, slide, scroll — each become a unique passive electromagnetic response.</div>
+        <div class="tl-venue">Thumb-to-index input</div>
       </div>
       <div class="tl-item">
         <span class="tl-dot"></span>
         <div class="tl-year">2025 · UIST</div>
-        <div class="tl-title">picoRing mouse</div>
-        <div class="tl-desc">A wearable, ring-shaped computer mouse for AR/VR. <b>Semi-passive inductive telemetry</b> pushes power down to hundreds of microwatts — letting a 5 g ring run for over a month on one charge. (Demoed at CHI 2025; full paper at UIST 2025.)</div>
+        <div class="tl-title">picoRing <em>mouse</em></div>
+        <div class="tl-venue">Wireless ring mouse</div>
       </div>
       <div class="tl-item">
         <span class="tl-dot"></span>
         <div class="tl-year">2026 · CHI</div>
-        <div class="tl-title">picoRing NFC</div>
-        <div class="tl-desc">The ring joins a network. A compact NFC ring with a 3-axis accelerometer becomes one node in a <b>body-scale NFC</b> system, communicating across the whole body through meandered e-textiles.</div>
+        <div class="tl-title">picoRing <em>NFC</em></div>
+        <div class="tl-venue">Body-scale NFC node</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot"></span>
+        <div class="tl-year">2026 · ISWC</div>
+        <div class="tl-title">picoRing <em>dual</em></div>
+        <div class="tl-venue">Bimanual XR input</div>
       </div>
     </div>
   </div>
@@ -271,8 +288,8 @@
   <div class="wrap">
     <div class="section-head">
       <span class="kicker">The Projects</span>
-      <h2>Four rings, one vision</h2>
-      <p>From text entry to pointing to body-scale networking — watch each prototype in action.</p>
+      <h2>Five rings, one vision</h2>
+      <p>From text entry to pointing to bimanual control — watch each prototype in action.</p>
     </div>
 
     <!-- TelemetRing -->
@@ -281,7 +298,7 @@
       <div class="project-grid">
         <div class="project-body">
           <span class="badge b1">TelemetRing · UIST 2020</span>
-          <h3>TelemetRing</h3>
+          <h3>TelemetRing <span class="aka">(aka picoRing <em>keyboard</em>)</span></h3>
           <div class="venue">A Batteryless &amp; Wireless Ring-shaped Keyboard using Passive Inductive Telemetry</div>
           <p class="body-text">Five passive sensor rings — one per finger — let you type on any surface with no batteries at all. Each ring is a resonant coil tuned to a different frequency; a tap shifts its resonance, and a wrist-mounted reader coil picks up the change. Together they form a 5-bit chord keyboard that works completely battery-free.</p>
           <div class="specs">
@@ -292,6 +309,7 @@
           </div>
           <div class="links">
             <a href="https://dl.acm.org/doi/10.1145/3379337.3415873" target="_blank" rel="noopener">📄 ACM Paper</a>
+            <a href="bib/telemetring.bib">📑 BibTeX</a>
             <a href="https://www.ryotakahashi.me/home/telemetring" target="_blank" rel="noopener">🔗 Project page</a>
           </div>
         </div>
@@ -318,6 +336,7 @@
           </div>
           <div class="links">
             <a href="https://dl.acm.org/doi/10.1145/3654777.3676365" target="_blank" rel="noopener">📄 ACM Paper</a>
+            <a href="bib/picoring.bib">📑 BibTeX</a>
             <a href="https://arxiv.org/abs/2411.13065" target="_blank" rel="noopener">🔗 arXiv</a>
           </div>
         </div>
@@ -332,8 +351,8 @@
       <img class="project-banner" src="images/picoring-mouse.jpg" alt="picoRing mouse — an ultra-low-power ring-based wireless tinymouse with wristband relay" loading="lazy">
       <div class="project-grid">
         <div class="project-body">
-          <span class="badge b3">picoRing mouse · UIST 2025</span>
-          <h3>picoRing mouse</h3>
+          <span class="badge b3">picoRing <em>mouse</em> · UIST 2025</span>
+          <h3>picoRing <em>mouse</em></h3>
           <div class="venue">Ultra-low-power Ring-based Wireless Tinymouse</div>
           <p class="body-text">The ring becomes a mouse. A watch-like wristband acts as a signal relay between the ring and AR glasses, using <b>semi-passive inductive telemetry</b> instead of Bluetooth or NFC. The ring modulates the wristband's magnetic field via frequency-shift keying — scroll and press through subtle thumb-to-index gestures — drawing only hundreds of microwatts, so a 5 g ring runs continuously for over a month on a single charge.</p>
           <div class="specs">
@@ -344,7 +363,7 @@
           </div>
           <div class="links">
             <a href="https://arxiv.org/abs/2504.03253" target="_blank" rel="noopener">📄 UIST 2025 (arXiv)</a>
-            <a href="https://dl.acm.org/doi/10.1145/3706599.3721183" target="_blank" rel="noopener">🔗 CHI 2025 Demo</a>
+            <a href="bib/picoring-mouse.bib">📑 BibTeX</a>
             <a href="https://www.u-tokyo.ac.jp/focus/en/press/z0508_00426.html" target="_blank" rel="noopener">📰 Press</a>
           </div>
         </div>
@@ -359,8 +378,8 @@
       <img class="project-banner" src="images/picoring-nfc.jpg" alt="picoRing NFC — a finger-worn NFC ring node in a body-scale NFC network over meandered e-textiles" loading="lazy">
       <div class="project-grid">
         <div class="project-body">
-          <span class="badge b4">picoRing NFC · CHI 2026</span>
-          <h3>picoRing NFC</h3>
+          <span class="badge b4">picoRing <em>NFC</em> · CHI 2026</span>
+          <h3>picoRing <em>NFC</em></h3>
           <div class="venue">Body-scale NFC for Wearables — Human-centric Body-scale NFC Networking</div>
           <p class="body-text">picoRing grows up into a networked device. A compact, finger-worn NFC ring integrates a low-power, high-speed <b>3-axis accelerometer</b> and an NFC module in a lightweight form factor. As part of a <b>body-scale NFC network</b>, it pairs with meandered e-textiles (Meander NFC) to overcome the weak coupling caused by distance and size mismatch — enabling stable, surface-to-multipoint communication between tiny wearable nodes spread across the body.</p>
           <div class="specs">
@@ -371,14 +390,40 @@
           </div>
           <div class="links">
             <a href="https://arxiv.org/abs/2603.04777" target="_blank" rel="noopener">📄 arXiv</a>
+            <a href="bib/picoring-nfc.bib">📑 BibTeX</a>
             <a href="https://dl.acm.org/doi/10.1145/3772363.3799126" target="_blank" rel="noopener">🔗 CHI 2026 EA</a>
           </div>
         </div>
         <div class="project-media">
+          <iframe src="https://www.youtube.com/embed/xxEWxeqx-Bg" title="picoRing NFC demonstration video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </article>
+
+    <!-- picoRing dual -->
+    <article class="project">
+      <div class="project-banner banner-soon">picoRing <em>dual</em><span class="soon-tag">ISWC 2026</span></div>
+      <div class="project-grid">
+        <div class="project-body">
+          <span class="badge b5">picoRing <em>dual</em> · ISWC 2026</span>
+          <h3>picoRing <em>dual</em></h3>
+          <div class="venue">An Ultra-low-power Bimanual Ring Interface based on Inductive Coupling</div>
+          <p class="body-text">Two hands, two rings. picoRing <em>dual</em> is an ultra-low-power <b>bimanual</b> interface built from a pair of ring-wristbands. Unlike picoRing <em>mouse</em> — limited to uni-manual trackball input at about 50 bps — it uses an <b>NFC-based ring-to-wristband link</b> to capture fast index-finger motions and thumb-to-index microgestures reliably at about 1.4 kbps. By tuning the ring's coil geometry, it keeps stable NFC against finger bending while staying within NFC's ultra-low-power profile — so a ring drawing about 0.86 mW lasts roughly 100 continuous hours on a single 20 mAh charge, bridging powerful XR control and the subtlety everyday wearables demand.</p>
+          <div class="specs">
+            <div class="spec"><span>Power (ring)</span><b>≈ 0.86 mW</b></div>
+            <div class="spec"><span>Battery</span><b>20 mAh</b></div>
+            <div class="spec"><span>Battery life</span><b>≈ 100 h</b></div>
+            <div class="spec"><span>Data rate</span><b>≈ 1.4 kbps</b></div>
+          </div>
+          <div class="links">
+            <a href="https://www.ryotakahashi.me/" target="_blank" rel="noopener">🔗 Project page</a>
+          </div>
+        </div>
+        <div class="project-media">
           <div class="media-placeholder">
-            <div class="mp-ring">💍</div>
-            <div class="mp-text">Newest work — presented at CHI 2026.<br>Read the paper for figures &amp; results.</div>
-            <a class="mp-link" href="https://arxiv.org/abs/2603.04777" target="_blank" rel="noopener">View on arXiv →</a>
+            <div class="mp-ring">💍💍</div>
+            <div class="mp-text">To appear at ISWC 2026.<br>Video &amp; paper coming soon.</div>
+            <a class="mp-link" href="https://www.ryotakahashi.me/" target="_blank" rel="noopener">More from the lab →</a>
           </div>
         </div>
       </div>
@@ -391,7 +436,7 @@
     <div class="section-head">
       <span class="kicker">Specifications</span>
       <h2>Performance comparison</h2>
-      <p>How the four generations stack up across power, size, sensing, and capability.</p>
+      <p>How the five generations stack up across power, size, sensing, and capability.</p>
     </div>
     <div class="table-scroll">
       <table class="cmp">
@@ -400,22 +445,21 @@
             <th></th>
             <th class="h1c">TelemetRing</th>
             <th class="h2c">picoRing</th>
-            <th class="h3c">picoRing mouse</th>
-            <th class="h4c">picoRing NFC</th>
+            <th class="h3c">picoRing <em>mouse</em></th>
+            <th class="h4c">picoRing <em>NFC</em></th>
+            <th class="h5c">picoRing <em>dual</em></th>
           </tr>
         </thead>
         <tbody>
-          <tr><th>Year / Venue</th><td>2020 · UIST</td><td>2024 · UIST</td><td>2025 · UIST</td><td>2026 · CHI</td></tr>
-          <tr><th>Role</th><td>Ring keyboard</td><td>Thumb-to-index input</td><td>Wireless mouse</td><td>Networked ring node</td></tr>
-          <tr><th>Sensing method</th><td>Passive inductive telemetry</td><td>Passive coil + switch network</td><td>Semi-passive inductive telemetry</td><td>Body-scale NFC + accelerometer</td></tr>
-          <tr><th>Power source</th><td>Batteryless</td><td>Battery-free</td><td>27 mAh Li-Po</td><td>Ultra-low-power</td></tr>
-          <tr><th>Power draw</th><td>0 µW (passive)</td><td>0 µW (passive)</td><td>≤ 449 µW</td><td>Ultra-low (NFC)</td></tr>
-          <tr><th>Battery life</th><td>∞ (no battery)</td><td>∞ (no battery)</td><td>600–1000 hours</td><td>—</td></tr>
-          <tr><th>Ring weight</th><td>6 g</td><td>1.5 g</td><td>5 g</td><td>Lightweight</td></tr>
-          <tr><th>Range / link</th><td>Wrist reader coil</td><td>13 cm</td><td>Wristband relay</td><td>Body-scale (textile)</td></tr>
-          <tr><th>Inputs</th><td>5-bit chord typing</td><td>Press / slide / scroll</td><td>Scroll + press</td><td>Motion + NFC data</td></tr>
-          <tr><th>Key metric</th><td>89.7% typing detection</td><td>4 ring designs</td><td>28.0–29.6 MHz FSK</td><td>3-axis accelerometer</td></tr>
-          <tr><th>Target use</th><td>Mobile text entry</td><td>Subtle wearable input</td><td>AR / VR pointing</td><td>Wearable sensor networks</td></tr>
+          <tr><th>Year / Venue</th><td>2020 · UIST</td><td>2024 · UIST</td><td>2025 · UIST</td><td>2026 · CHI</td><td>2026 · ISWC</td></tr>
+          <tr><th>Role</th><td>Ring keyboard</td><td>Ring switch</td><td>Ring mouse</td><td>Ring AR controller</td><td>Bimanual XR input</td></tr>
+          <tr><th>Sensing method</th><td>Passive inductive telemetry</td><td>Passive coil + switch network</td><td>Semi-passive inductive telemetry</td><td>Body-scale NFC + accelerometer</td><td>NFC ring-to-wristband (inductive)</td></tr>
+          <tr><th>Ring's power consumption</th><td>0 µW (passive)</td><td>0 µW (passive)</td><td>≤ 449 µW</td><td>Ultra-low (NFC)</td><td>≈ 0.86 mW</td></tr>
+          <tr><th>Battery life</th><td>∞ (no battery)</td><td>∞ (no battery)</td><td>600–1000 hours</td><td>—</td><td>≈ 100 hours</td></tr>
+          <tr><th>Ring weight</th><td>6 g</td><td>1.5 g</td><td>5 g</td><td>Lightweight</td><td>—</td></tr>
+          <tr><th>Inputs</th><td>5-bit chord typing</td><td>Press / slide / scroll</td><td>Scroll + press</td><td>Motion + NFC data</td><td>Index motion + microgestures</td></tr>
+          <tr><th>Key metric</th><td>89.7% typing detection</td><td>4 ring designs</td><td>28.0–29.6 MHz FSK</td><td>3-axis accelerometer</td><td>≈ 1.4 kbps</td></tr>
+          <tr><th>Target use</th><td>Mobile text entry</td><td>Subtle wearable input</td><td>AR / VR pointing</td><td>Wearable sensor networks</td><td>Everyday mobile AR</td></tr>
         </tbody>
       </table>
     </div>
@@ -424,8 +468,9 @@
 
 <footer>
   <div class="wrap">
-    <p class="credit">Research from the University of Tokyo (Kawahara Lab) and collaborators · Led by <a href="https://www.ryotakahashi.me/" target="_blank" rel="noopener">Ryo Takahashi</a></p>
-    <p class="small">TelemetRing (UIST 2020) · picoRing (UIST 2024) · picoRing mouse (UIST 2025) · picoRing NFC (CHI 2026). Specifications drawn from the respective publications and press materials.</p>
+    <p class="credit">Research led by <a href="https://www.ryotakahashi.me/" target="_blank" rel="noopener">Ryo Takahashi</a></p>
+    <p class="small">TelemetRing (UIST 2020) · picoRing (UIST 2024) · picoRing <em>mouse</em> (UIST 2025) · picoRing <em>NFC</em> (CHI 2026) · picoRing <em>dual</em> (ISWC 2026)</p>
+    <p class="small">© Ryo Takahashi</p>
   </div>
 </footer>
 
