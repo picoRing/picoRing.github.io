@@ -96,6 +96,17 @@
   }
   .btn-ghost { border: 1px solid var(--line); color: var(--text); background: rgba(255,255,255,0.02); }
   .btn-ghost:hover { background: rgba(255,255,255,0.06); }
+  .hero-slideshow {
+    position: relative; max-width: 780px; margin: 48px auto 0; height: 320px;
+    border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);
+    background: linear-gradient(135deg, #eef0f7, #e3e7f3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  }
+  .hero-slideshow img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+    opacity: 0; transition: opacity 1s ease;
+  }
+  .hero-slideshow img.active { opacity: 1; }
 
   /* ---------- Section ---------- */
   section { padding: 84px 0; }
@@ -244,6 +255,12 @@
       <a class="btn btn-primary" href="#projects">Explore the projects ↓</a>
       <a class="btn btn-ghost" href="#compare">Compare specs</a>
     </div>
+    <div class="hero-slideshow" aria-hidden="true">
+      <img class="active" src="images/telemetring.jpg" alt="TelemetRing prototype">
+      <img src="images/picoring.jpg" alt="picoRing prototypes">
+      <img src="images/picoring-mouse.jpg" alt="picoRing mouse prototype">
+      <img src="images/picoring-nfc.jpg" alt="picoRing NFC prototype">
+    </div>
   </div>
 </header>
 
@@ -294,7 +311,6 @@
 
     <!-- TelemetRing -->
     <article class="project">
-      <img class="project-banner" src="images/telemetring.jpg" alt="TelemetRing — passive sensor rings worn on the fingers with a wrist-mounted reader coil" loading="lazy">
       <div class="project-grid">
         <div class="project-body">
           <span class="badge b1">TelemetRing · UIST 2020</span>
@@ -321,7 +337,6 @@
 
     <!-- picoRing -->
     <article class="project">
-      <img class="project-banner" src="images/picoring.jpg" alt="picoRing — a family of battery-free rings (press, slide, joystick, scroll) with a wristband reader coil" loading="lazy">
       <div class="project-grid">
         <div class="project-body">
           <span class="badge b2">picoRing · UIST 2024</span>
@@ -348,7 +363,6 @@
 
     <!-- picoRing mouse -->
     <article class="project">
-      <img class="project-banner" src="images/picoring-mouse.jpg" alt="picoRing mouse — an ultra-low-power ring-based wireless tinymouse with wristband relay" loading="lazy">
       <div class="project-grid">
         <div class="project-body">
           <span class="badge b3">picoRing <em>mouse</em> · UIST 2025</span>
@@ -375,7 +389,6 @@
 
     <!-- picoRing NFC -->
     <article class="project">
-      <img class="project-banner" src="images/picoring-nfc.jpg" alt="picoRing NFC — a finger-worn NFC ring node in a body-scale NFC network over meandered e-textiles" loading="lazy">
       <div class="project-grid">
         <div class="project-body">
           <span class="badge b4">picoRing <em>NFC</em> · CHI 2026</span>
@@ -402,7 +415,6 @@
 
     <!-- picoRing dual -->
     <article class="project">
-      <div class="project-banner banner-soon">picoRing <em>dual</em><span class="soon-tag">ISWC 2026</span></div>
       <div class="project-grid">
         <div class="project-body">
           <span class="badge b5">picoRing <em>dual</em> · ISWC 2026</span>
@@ -474,5 +486,17 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var imgs = document.querySelectorAll('.hero-slideshow img');
+  if (imgs.length < 2) return;
+  var i = 0;
+  setInterval(function () {
+    imgs[i].classList.remove('active');
+    i = (i + 1) % imgs.length;
+    imgs[i].classList.add('active');
+  }, 5000);
+})();
+</script>
 </body>
 </html>
